@@ -15,12 +15,14 @@ class ChatAppContainer extends Component {
   render() {
     return (
       <ChatAppComponent
+        user={this.props.user}
         restoring={this.props.restoring}
         logged={this.props.logged} />)
   }
 }
 
 const mapStateToProps = state => ({
+  user: state.session.user,
   restoring: state.session.restoring,
   logged: state.session.user != null,
 })

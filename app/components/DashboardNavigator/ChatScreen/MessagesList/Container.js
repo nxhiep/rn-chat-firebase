@@ -1,40 +1,20 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { loadMessages } from '../../../../store/chat/actions'
-import { getChatItems } from '../../../../store/chat/selectors'
-
 import MessageListComponent from './Component'
+import { View, Text } from 'react-native';
 
 class MessagesListContainer extends Component {
 
-  componentDidMount() {
-    this.props.loadMessages()
-  }
-
   render() {
-    const data = getChatItems(this.props.messages).reverse();
-    return (
-      <MessageListComponent
-        data={data} />
-    )
+    // console.log('MessagesListContainer', this.props)
+    if(!this.props.loaded){
+      return (<View><Text>Messgages Loading...</Text></View>)
+    } else {
+      return (
+        <MessageListComponent
+          {...this.props}/>
+      )
+    }
   }
 }
 
-const mapStateToProps = state => ({
-  messages: state.chat.messages,
-  error: state.chat.loadMessagesError
-})
-
-const mapDispatchToProps = {
-  loadMessages
-}
-
-MessagesListContainer.propTypes = {
-  messages: PropTypes.object,
-  error: PropTypes.string,
-  loadMessages: PropTypes.func.isRequired
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MessagesListContainer)
+export default (MessagesListContainer)

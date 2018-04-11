@@ -13,13 +13,12 @@ class MessageFormComponent extends Component {
 
   constructor() {
     super()
-
     this.handleMessageChange = (message) => {
       this.props.updateMessage(message)
     }
 
     this.handleButtonPress = () => {
-      this.props.sendMessage(this.props.message)
+      this.props.sendMessage(this.props.conversation, this.props.courseChannel, this.props.currentUser, this.props.friend, this.props.message)
     }
   }
 
@@ -30,6 +29,7 @@ class MessageFormComponent extends Component {
   }
 
   render() {
+    console.log('MessageFormComponent', this.props);
     const sending = this.props.sending
     const isButtonDisabled = sending || this.props.message.trim().length == 0
     const opacity = isButtonDisabled ? OPACITY_DISABLED : OPACITY_ENABLED

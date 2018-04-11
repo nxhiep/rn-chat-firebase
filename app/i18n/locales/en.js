@@ -2,7 +2,7 @@ export default {
   login: 'Login',
   signup: 'Sign Up',
 
-  email: 'Email',
+  account: 'Account',
   password: 'Password',
 
   chat: 'Chat',
@@ -12,5 +12,7 @@ export default {
 
   you: 'You',
 
-  placeholder: 'There are no messages yet',
+  notMessages: 'There are no messages yet',
+  notChannels: 'There are no channels yet',
+  notUsers: 'There are no users yet',
 }

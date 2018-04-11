@@ -9,11 +9,14 @@ import translations from '../../../../../i18n'
 const MESSAGE_TEXT_MARGIN = 50
 
 const MessageRowComponent = props => {
+  // console.log('MessageRowComponent', props)
   const isCurrentUser = props.isCurrentUser
   const alignItems = isCurrentUser ? 'flex-end' : 'flex-start'
   const margin = isCurrentUser ? {marginLeft: MESSAGE_TEXT_MARGIN} : {marginRight: MESSAGE_TEXT_MARGIN}
-  const username = isCurrentUser ? translations.t('you') : props.message.user.email
-  const date = relativeDate(new Date(props.message.createdAt))
+  const message = props.message;
+  // console.log('message', message);
+  const username = isCurrentUser ? translations.t('you') : message.fullName
+  const date = relativeDate(new Date(message.createDate))
   return (
     <View
       style={styles.container}>
@@ -25,7 +28,7 @@ const MessageRowComponent = props => {
         </Text>
         <Text
           style={styles.messageText}>
-          {props.message.text}
+          {message.content}
         </Text>
       </View>
     </View>
@@ -35,11 +38,9 @@ const MessageRowComponent = props => {
 MessageRowComponent.propTypes = {
   isCurrentUser: PropTypes.bool.isRequired,
   message: PropTypes.shape({
-    createdAt: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
-    user: PropTypes.shape({
-      email: PropTypes.string.isRequired
-    })
+    createDate: PropTypes.number.isRequired,
+    content: PropTypes.string.isRequired,
+    fullName: PropTypes.string.isRequired
   })
 }
 

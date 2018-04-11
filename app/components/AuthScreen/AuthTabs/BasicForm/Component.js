@@ -10,10 +10,10 @@ class BasicFormComponent extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', };
+    this.state = { account: '', password: '', };
 
-    this.handleEmailChange = (email) => {
-      this.setState({email: email})
+    this.handleAccountChange = (account) => {
+      this.setState({account: account})
     }
 
     this.handlePasswordChange = (password) => {
@@ -21,7 +21,7 @@ class BasicFormComponent extends Component {
     }
 
     this.handleButtonPress = () => {
-      this.props.onButtonPress(this.state.email, this.state.password)
+      this.props.onButtonPress(this.state.account, this.state.password)
     }
   }
 
@@ -32,12 +32,12 @@ class BasicFormComponent extends Component {
 
         <TextInput
           style={styles.textInput}
-          placeholder={translations.t('email')}
+          placeholder={translations.t('account')}
           returnKeyType='next'
-          keyboardType='email-address'
+          // keyboardType='account'
           autoCapitalize='none'
-          onChangeText={this.handleEmailChange}
-          value={this.state.email}
+          onChangeText={this.handleAccountChange}
+          value={this.state.account}
           underlineColorAndroid={'transparent'} />
 
         <TextInput
